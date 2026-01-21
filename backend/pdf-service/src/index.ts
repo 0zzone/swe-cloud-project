@@ -11,7 +11,9 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/process", (req: Request, res: Response) => {
-  res.json({ message: "PDF processed!" });
+  setTimeout(() => {
+    res.json({ message: "PDF processed!" });
+  }, 3000);
 });
 
 app.listen(PORT, () => {

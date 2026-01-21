@@ -11,7 +11,9 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/process", (req: Request, res: Response) => {
-  res.json({ message: "Image processed!" });
+  setTimeout(() => {
+    res.json({ message: "Image processed!" });
+  }, 2000);
 });
 
 app.listen(PORT, () => {
