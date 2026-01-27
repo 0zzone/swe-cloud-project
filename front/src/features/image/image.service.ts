@@ -1,5 +1,5 @@
-import { imageApiClient } from "@/lib/api-clients/image-api-client";
+import { apiClient } from "@/lib/api-client";
 
 export const processImageFile = async () => {
-  return imageApiClient.get<string>("/process");
+  return apiClient.post<string>("/image/process");
 };

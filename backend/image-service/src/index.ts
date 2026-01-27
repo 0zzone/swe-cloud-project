@@ -12,8 +12,8 @@ app.use(express.json());
 
 app.get("/process", (req: Request, res: Response) => {
   setTimeout(() => {
-    res.json({ message: "Image processed!" });
-  }, 2000);
+    res.json({ message: "PDF processed!" });
+  }, 3000);
 });
 
 app.listen(PORT, () => {

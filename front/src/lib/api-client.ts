@@ -1,14 +1,13 @@
-export interface ApiClient {
+export interface IApiClient {
   get<T>(endpoint: string, params?: Record<string, unknown>): Promise<T>;
   post<T>(endpoint: string, data: unknown): Promise<T>;
   put<T>(endpoint: string, data: unknown): Promise<T>;
   delete<T>(endpoint: string): Promise<T>;
 }
 
-// base-api-client.ts
 import axios, { type AxiosInstance } from "axios";
 
-export class BaseApiClient implements ApiClient {
+class ApiClient implements IApiClient {
   protected client: AxiosInstance;
 
   constructor(baseURL: string) {
@@ -23,7 +22,7 @@ export class BaseApiClient implements ApiClient {
     return response.data;
   }
 
-  async post<T>(endpoint: string, data: unknown): Promise<T> {
+  async post<T>(endpoint: string, data?: unknown): Promise<T> {
     const response = await this.client.post<T>(endpoint, data);
     return response.data;
   }
@@ -38,3 +37,7 @@ export class BaseApiClient implements ApiClient {
     return response.data;
   }
 }
+
+export const apiClient = new ApiClient(
+  import.meta.env.VITE_APP_API_GATEWAY_URL,
+);

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdf-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pdf-service
+  template:
+    metadata:
+      labels:
+        app: pdf-service
+    spec:
+      containers:
+        - name: pdf-service
+          image: matt91320/pdf-service:latest
+          ports:
+            - containerPort: 3002

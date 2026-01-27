@@ -1,5 +1,5 @@
-import { pdfApiClient } from "@/lib/api-clients/pdf-api-client";
+import { apiClient } from "@/lib/api-client";
 
 export const processPdfFile = async () => {
-  return pdfApiClient.get<string>("/process");
+  return apiClient.post<string>("/pdf/process");
 };
