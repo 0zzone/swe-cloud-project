@@ -15,5 +15,6 @@ spec:
       containers:
         - name: pdf-service
           image: matt91320/pdf-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3002

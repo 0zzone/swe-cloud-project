@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3002;
 app.use(cors());
 app.use(express.json());
 
-app.get("/process", (req: Request, res: Response) => {
+app.post("/process", (req: Request, res: Response) => {
   setTimeout(() => {
     res.json({ message: "PDF processed!" });
   }, 3000);

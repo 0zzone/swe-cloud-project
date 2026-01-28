@@ -26,8 +26,9 @@ kubectl wait --for=condition=ready pod -l app=image-service --timeout=45s
 kubectl wait --for=condition=ready pod -l app=pdf-service --timeout=45s
 
 # Appliquer l'Ingress
-echo "✅ Application de l'Ingress..."
-kubectl apply -f ingress.yml
+echo "✅ Application de Istio..."
+kubectl apply -f gateway.yml
+kubectl apply -f virtualservice.yml
 
-echo "Forwarding ingress-nginx-controller port 8080 to 80"
-kubectl -n ingress-nginx port-forward svc/ingress-nginx-controller 8080:80
+echo "Forwarding istio-ingressgateway port 8080 to 80"
+kubectl port-forward -n istio-system svc/istio-ingressgateway 8080:80

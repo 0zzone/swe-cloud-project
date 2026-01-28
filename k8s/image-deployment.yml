@@ -15,5 +15,6 @@ spec:
       containers:
         - name: image-service
           image: matt91320/image-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3001
