@@ -10,6 +10,7 @@ if ! minikube status &> /dev/null; then
 fi
 
 # Istio installation
+rm -rf istio-*
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-*
 export PATH=$PWD/bin:$PATH
