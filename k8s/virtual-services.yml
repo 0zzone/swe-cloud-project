@@ -1,16 +1,16 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: app-virtualservice
+  name: my-virtualservice
 spec:
   hosts:
-    - "*" # Replace with your actual host if needed
+    - "*"
   gateways:
-    - app-gateway
+    - my-gateway
   http:
     - match:
         - uri:
-            regex: /pdf(/|$)(.*)
+            prefix: /pdf
       route:
         - destination:
             host: pdf-service
@@ -18,7 +18,7 @@ spec:
               number: 80
     - match:
         - uri:
-            regex: /image(/|$)(.*)
+            prefix: /image
       route:
         - destination:
             host: image-service

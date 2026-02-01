@@ -9,12 +9,17 @@ if ! minikube status &> /dev/null; then
     minikube start
 fi
 
-# S'assurer que l'addon ingress est activé
-echo "🧩 Activation de l'addon ingress (si nécessaire)..."
-minikube addons enable ingress
+# Istio installation
+curl -L https://istio.io/downloadIstio | sh -
+cd istio-*
+export PATH=$PWD/bin:$PATH
+istioctl install --set profile=demo -y
+cd ..
 
 # Appliquer les configurations Kubernetes
 echo "☸️  Application des configurations Kubernetes..."
+kubectl apply -f gateway.yml
+kubectl apply -f virtual-services.yml
 kubectl apply -f image-deployment.yml
 kubectl apply -f pdf-deployment.yml
 kubectl apply -f image-service.yml
@@ -24,11 +29,6 @@ kubectl apply -f pdf-service.yml
 echo "⏳ Attente du démarrage des pods..."
 kubectl wait --for=condition=ready pod -l app=image-service --timeout=45s
 kubectl wait --for=condition=ready pod -l app=pdf-service --timeout=45s
-
-# Appliquer l'Ingress
-echo "✅ Application de Istio..."
-kubectl apply -f gateway.yml
-kubectl apply -f virtualservice.yml
 
 echo "Forwarding istio-ingressgateway port 8080 to 80"
 kubectl port-forward -n istio-system svc/istio-ingressgateway 8080:80
