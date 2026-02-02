@@ -25,6 +25,7 @@ kubectl apply -f image-deployment.yml
 kubectl apply -f pdf-deployment.yml
 kubectl apply -f image-service.yml
 kubectl apply -f pdf-service.yml
+kubectl apply -f destination-rules.yml
 
 # Attendre que les pods soient prêts
 echo "⏳ Attente du démarrage des pods..."
