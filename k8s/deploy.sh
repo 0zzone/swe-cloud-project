@@ -17,6 +17,11 @@ export PATH=$PWD/bin:$PATH
 istioctl install --set profile=demo -y
 cd ..
 
+# DB
+kubectl apply -f postgres-image-deployment.yml
+echo "⏳ Attente du démarrage des pods (DB)..."
+kubectl wait --for=condition=ready pod -l app=postgres-image --timeout=45s
+
 # Appliquer les configurations Kubernetes
 echo "☸️  Application des configurations Kubernetes..."
 kubectl apply -f gateway.yml

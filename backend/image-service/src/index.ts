@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { prisma } from "@/lib/prisma";
+import { generateRandomDelay } from "@/lib/utils";
 
 dotenv.config();
 
@@ -14,10 +16,18 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Image service is running!");
 });
 
-app.post("/process", (req: Request, res: Response) => {
-  setTimeout(() => {
-    res.json({ message: "PDF processed!" });
-  }, 3000);
+app.post("/process", async (req: Request, res: Response) => {
+  const process = await prisma.process.create({
+    data: {},
+  });
+  const delay = generateRandomDelay(2, 5);
+  setTimeout(async () => {
+    await prisma.process.update({
+      where: { id: process.id },
+      data: { endDate: new Date() },
+    });
+    res.json({ message: `Image processed in ${delay / 1000} seconds!` });
+  }, delay);
 });
 
 app.listen(PORT, () => {
