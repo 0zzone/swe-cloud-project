@@ -18,3 +18,8 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3002
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://user:password@postgres-pdf:5402/pdfdb?schema=public"
+            - name: PORT
+              value: "3002"

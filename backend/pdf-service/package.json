@@ -6,14 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon src/index.ts"
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.19.0",
   "dependencies": {
+    "@prisma/client": "^6.19.2",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1"
@@ -23,7 +24,9 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.10",
     "nodemon": "^3.1.11",
+    "prisma": "^6.19.2",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
   }
 }

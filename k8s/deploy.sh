@@ -19,8 +19,10 @@ cd ..
 
 # DB
 kubectl apply -f postgres-image-deployment.yml
+kubectl apply -f postgres-pdf-deployment.yml
 echo "⏳ Attente du démarrage des pods (DB)..."
 kubectl wait --for=condition=ready pod -l app=postgres-image --timeout=45s
+kubectl wait --for=condition=ready pod -l app=postgres-pdf --timeout=45s
 
 # Appliquer les configurations Kubernetes
 echo "☸️  Application des configurations Kubernetes..."

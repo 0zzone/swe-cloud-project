@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { processImageFile } from "./image.service";
 import { toast } from "sonner";
-import type { ProcessImageResponse } from "./image.type";
+import type { ProcessImageResponse } from "@/lib/types";
 
 export const useProcessImageFile = () => {
   return useMutation({

@@ -13,11 +13,14 @@ RUN npm install -g pnpm && pnpm install --frozen-lockfile
 # Copy the rest of the application code to the working directory
 COPY . .
 
+# Generate Prisma Client
+RUN pnpm prisma generate
+
 # Build the TypeScript code
 RUN pnpm run build
 
 # Expose the port the app runs on
 EXPOSE 3002
 
-# Command to run the application
-CMD ["pnpm", "start"]
+# Command to run migrations and start the application
+CMD ["sh", "-c", "pnpm prisma migrate deploy && pnpm start"]
