@@ -3,6 +3,20 @@
 echo "🚀 Déploiement local avec Minikube"
 echo "==================================="
 
+# Vérifier que minikube est installé
+if ! command -v minikube &> /dev/null; then
+    echo "❌ minikube n'est pas installé. Veuillez l'installer avant de continuer."
+    echo "   https://minikube.sigs.k8s.io/docs/start/"
+    exit 1
+fi
+
+# Vérifier que kubectl est installé
+if ! command -v kubectl &> /dev/null; then
+    echo "❌ kubectl n'est pas installé. Veuillez l'installer avant de continuer."
+    echo "   https://kubernetes.io/docs/tasks/tools/"
+    exit 1
+fi
+
 # Vérifier que Minikube est démarré
 if ! minikube status &> /dev/null; then
     echo "⚠️  Minikube n'est pas démarré. Démarrage..."
