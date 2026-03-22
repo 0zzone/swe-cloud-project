@@ -38,6 +38,8 @@ class ApiClient implements IApiClient {
   }
 }
 
-export const apiClient = new ApiClient(
-  import.meta.env.VITE_APP_API_GATEWAY_URL,
-);
+const resolvedBaseUrl =
+  import.meta.env.VITE_APP_API_GATEWAY_URL ||
+  (typeof window !== "undefined" ? window.location.origin : "");
+
+export const apiClient = new ApiClient(resolvedBaseUrl);

@@ -4,12 +4,12 @@
 IMAGE_NAME="matt91320/pdf-service"
 TAG="latest"
 
-# Build the Docker image
-echo "Building Docker image..."
-docker build -t $IMAGE_NAME:$TAG .
+PLATFORM="linux/amd64,linux/arm64"
 
-# Push the Docker image to Docker Hub
-echo "Pushing Docker image to Docker Hub..."
-docker push $IMAGE_NAME:$TAG
+echo "📦 Plateforme : $PLATFORM"
+
+# ── Build & Push ──────────────────────────────────────────────────────────────
+echo "Building Docker image..."
+docker buildx build --platform "$PLATFORM" -t $IMAGE_NAME:$TAG --push .
 
 echo "Docker image pushed successfully: $IMAGE_NAME:$TAG"
