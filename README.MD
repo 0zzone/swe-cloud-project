@@ -89,3 +89,27 @@ cd front
 pnpm install
 pnpm dev
 ```
+
+## 7. Déploiement Kubernetes (k8s)
+
+Le projet intègre un environnement complet Kubernetes pour le déploiement local (via Minikube) ou sur le Cloud (Google Kubernetes Engine - GKE). Le maillage de services (Service Mesh) est géré grâce à **Istio**.
+
+### 7.1 En local (Minikube)
+
+Assurez-vous d'avoir installé `minikube` et `kubectl`. Le script va automatiquement vérifier/démarrer Minikube, installer Istio, et appliquer l'ensemble des manifestes Kubernetes (services, gateways, bases de données, etc.).
+
+```bash
+cd k8s
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### 7.2 Cloud (GKE)
+
+Les manifestes et le script de déploiement adaptés pour GKE se trouvent dans le dossier `k8s_gke`.
+
+```bash
+cd k8s_gke
+chmod +x deploy.sh
+./deploy.sh
+```
