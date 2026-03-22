@@ -32,3 +32,11 @@ spec:
             host: image-service
             port:
               number: 80
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: front-service
+            port:
+              number: 80
