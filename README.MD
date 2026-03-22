@@ -96,20 +96,35 @@ Le projet intègre un environnement complet Kubernetes pour le déploiement loca
 
 ### 7.1 En local (Minikube)
 
-Assurez-vous d'avoir installé `minikube` et `kubectl`. Le script va automatiquement vérifier/démarrer Minikube, installer Istio, et appliquer l'ensemble des manifestes Kubernetes (services, gateways, bases de données, etc.).
+Assurez-vous d'avoir installé `minikube` et `kubectl`. Le script va automatiquement vérifier et démarrer Minikube, installer Istio, et appliquer l'ensemble des manifestes Kubernetes (services, gateways, bases de données, etc.).
 
 ```bash
 cd k8s
 chmod +x deploy.sh
 ./deploy.sh
 ```
+Sur cette image, l'on peut voir à gauche le script `deploy.sh` déployer l'application sur le port 8080, et à droite les différents pods actifs après le déploiement : 
+![](https://zupimages.net/up/26/12/d9i3.png)
+
+L'application accessible en localhost :
+![](https://zupimages.net/up/26/12/a2ob.png)
 
 ### 7.2 Cloud (GKE)
 
-Les manifestes et le script de déploiement adaptés pour GKE se trouvent dans le dossier `k8s_gke`.
+Les manifestes et le script de déploiement adaptés pour GKE se trouvent dans le dossier `k8s_gke`. Il agit selon les mêmes étapes qu'en local, mais adaptées à l'environnement cloud.
 
 ```bash
 cd k8s_gke
 chmod +x deploy.sh
 ./deploy.sh
 ```
+
+Voici la liste de nos pods actifs après le déploiement :
+![](https://zupimages.net/up/26/12/09ob.png)
+
+L'application accessible via l'IP externe du LoadBalancer :
+![](https://zupimages.net/up/26/12/5jw0.png)
+
+## 8. Axe d'amélioration
+
+Pour des raisons de gestion du temps, nous avons choisi de ne pas implémenter certaines fonctionnalités qui auraient pu enrichir le projet, notamment l'intégration de terraform pour la gestion de l'infrastructure, des tests automatisés.
